@@ -19,7 +19,7 @@ def response():
     # import requests
     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
-def test_get_current_tournament():
+def test_tournament():
     """Test tournament part"""
     list = get_current_tournament()
     assert len(list) >= 1
