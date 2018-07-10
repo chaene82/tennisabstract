@@ -6,6 +6,7 @@
 import pytest
 
 
+from tennisabstract import tennisabstract
 from tennisabstract import get_current_tournament
 
 
@@ -19,7 +20,7 @@ def response():
     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 def test_get_current_tournament():
-    """Test player part"""
+    """Test tournament part"""
     list = get_current_tournament()
     assert len(list) >= 1
     
