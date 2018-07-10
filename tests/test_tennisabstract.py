@@ -6,7 +6,7 @@
 import pytest
 
 
-from tennisabstract import tennisabstract
+from tennisabstract import get_current_tournament
 
 
 @pytest.fixture
@@ -21,6 +21,6 @@ def response():
 def test_get_current_tournament():
     """Test player part"""
     list = get_current_tournament()
-    assert len(df_player) >= 1
+    assert len(list) >= 1
     
 
