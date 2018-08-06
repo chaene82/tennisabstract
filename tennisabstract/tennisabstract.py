@@ -41,7 +41,7 @@ def get_current_tournament():
     return tournament_links     
 
 
-def get_ta_proba(tournament_url = "2018ATPHouston.html", list_rounds = [2,4,8,16,32,64]):
+def get_ta_proba(tournament_url = "http://www.tennisabstract.com/current/2018ATPHouston.html", list_rounds = [2,4,8,16,32,64]):
     """
     read all probabilities from all players from the website. http://www.tennisabstract.com/current/2018ATPHouston.html
     
@@ -93,6 +93,7 @@ def get_ta_proba(tournament_url = "2018ATPHouston.html", list_rounds = [2,4,8,16
                 if not home_player_tds[0].a :
                     break
                 home_player_name = home_player_tds[0].a.text
+                home_player_id = home_player.a['href'].split('?')[1].replace('p=','')
                 home_player_proba = float(home_player_tds[2].text.strip('%'))
                 #print(home_player_name, home_player_proba)
                 
@@ -101,7 +102,8 @@ def get_ta_proba(tournament_url = "2018ATPHouston.html", list_rounds = [2,4,8,16
                 away_player_tds = away_player.findAll('td')
                 if not away_player_tds[0].a :
                     break
-                away_player_name = away_player_tds[0].a.text   
+                away_player_name = away_player_tds[0].a.text  
+                away_player_id = away_player.a['href'].split('?')[1].replace('p=','')
                 
                 away_player_proba = float(away_player_tds[2].text.strip('%'))
                 #print(away_player_name, away_player_proba)
@@ -111,6 +113,8 @@ def get_ta_proba(tournament_url = "2018ATPHouston.html", list_rounds = [2,4,8,16
                 dict = { 'tournament' : tour_title,
                          'home_player_name' :  home_player_name,
                          'away_player_name' :  away_player_name,
+                         'home_player_id' :  home_player_id,
+                         'away_player_id' :  away_player_id,                         
                          'home_player_proba' :  home_player_proba,
                          'away_player_proba' :  away_player_proba
                         }
@@ -121,6 +125,36 @@ def get_ta_proba(tournament_url = "2018ATPHouston.html", list_rounds = [2,4,8,16
                                        
     return result
 
+
+def get_upcoming_events() :
+    """
+    get all upcoming events for tennis abstracts
+    
+    Returns:
+        result: da pandas dataframe including the players and the probalilities
+       
+    
+    """
+    result = pd.DataFrame()
+    tournament_list = get_current_tournament()
+    
+         
+    #get normal tournaments    
+    for tournament in tournament_list:
+        try :
+            ta_result = get_ta_proba(tournament_url = tournament, list_rounds = ['Current'])
+            result = result.append(ta_result)
+        except :
+            print("error loading TA page")
+            
+    
+    result = result[(result['home_player_proba'] != 0) & (result['home_player_proba'] != 100) ]
+            
+    return result
+        
+
+    
+    
 
 def get_player_information(player='GuidoPella'):
     """
