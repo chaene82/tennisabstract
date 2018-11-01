@@ -19,9 +19,8 @@ Python package to get acutal tennis events and proabilities from www.tennisabstr
 Install
 --------
 
-```
+```python
 git clone git@github.com:chaene82/tennisabstract.git
-
 python setup.py
 ```
 
