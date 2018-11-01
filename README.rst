@@ -20,6 +20,7 @@ Install
 --------
 
     git clone git@github.com:chaene82/tennisabstract.git
+    
     python setup.py
     
 
