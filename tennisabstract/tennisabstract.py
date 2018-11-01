@@ -7,6 +7,8 @@
 import urllib.request
 import pandas as pd
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 def get_current_tournament():
     """
@@ -156,32 +158,6 @@ def get_upcoming_events() :
     
     
 
-def get_player_information(player='GuidoPella'):
-    """
-    reading the website http://www.tennisabstract.com/cgi-bin/player.cgi?p=GuidoPella and get 
-    all information about the player which are availiable. 
-    do also a error handling if some information are not existing.
     
-    Args:
-        player (string): The string-key of the player   
-
-        
-    Returns:
-        json: { name    : player_name,
-                dob     : day_of_birth,
-                plays   : left_right,
-                rank    : current_rank,
-                d_rank  : current_double_rank,
-                links   :  { apt : apt,
-                             itf : ift, ...
-                             }
-                statistics : { last52 : { match : match, 
-                                          tiebreaks : tiebreaks, 
-                                          ...},
-                                          hard : { match: ...}
-                              2010 { ... }
-                            }
-                }
-        False: not possible to place the bet
-        
-    """    
+    
+    

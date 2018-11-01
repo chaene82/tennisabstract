@@ -3,30 +3,34 @@ tennisabstract
 ==============
 
 
-.. image:: https://img.shields.io/pypi/v/tennisabstract.svg
-        :target: https://pypi.python.org/pypi/tennisabstract
-
 .. image:: https://img.shields.io/travis/chaene82/tennisabstract.svg
         :target: https://travis-ci.org/chaene82/tennisabstract
 
-.. image:: https://readthedocs.org/projects/tennisabstract/badge/?version=latest
-        :target: https://tennisabstract.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
 
 
 
 
-wrapper for tennis abstract
+Python package to get acutal tennis events and proabilities from www.tennisabstract.com. I used it for getting tennis betting picks for my tennis sportsbook application "ComeOn". 
+
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://tennisabstract.readthedocs.io.
+
+Install
+--------
+
+``git clone git@github.com:chaene82/tennisabstract.git``
+``python setup.py``
+
 
 
 Features
 --------
 
-* TODO
+* get_current_tournament
+* get_ta_proba
+* get_upcoming_events
+
 
 Credits
 -------
