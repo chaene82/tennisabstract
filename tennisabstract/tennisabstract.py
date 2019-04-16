@@ -55,21 +55,24 @@ def get_ta_proba(tournament_url = "http://www.tennisabstract.com/current/2018ATP
         result: da pandas dataframe including the players and the probalilities
    
     """
-
+    result = pd.DataFrame()
     url = tournament_url
     
     req = urllib.request.Request(url)
     #http://live-tennis.eu/en/official-atp-ranking
-    response = urllib.request.urlopen(req)
+    try :
+        response = urllib.request.urlopen(req)
+    except :
+        print("error getting event")
+        return result
+
 
     html = response.read()
 
     soup = BeautifulSoup(html, "html.parser")
     
     tour_title = soup.title.text
-    
-    result = pd.DataFrame()
-    
+
 
     for tournament_round in list_rounds :
         str_round = 'var proj' + str(tournament_round)
